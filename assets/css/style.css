@@ -1,0 +1,85 @@
+/* Mejoras: uso de variables, agrupación y comentarios */
+:root {
+  --piece-size: 50px;
+  --sprite-width: 300px;
+  --row-white: 0px;
+  --row-black: -50px;
+  --col-king: 0px;
+  --col-queen: -50px;
+  --col-bishop: -100px;
+  --col-knight: -150px;
+  --col-rook: -200px;
+  --col-pawn: -250px;
+}
+
+.sprite {
+  width: var(--piece-size);
+  height: var(--piece-size);
+  background-image: url("../img/Chess_Pieces_Sprite.svg");
+  background-size: var(--sprite-width) auto;
+}
+
+/* Piezas blancas */
+.w-king {
+  background-position: var(--col-king) var(--row-white);
+}
+.w-queen {
+  background-position: var(--col-queen) var(--row-white);
+}
+.w-bishop {
+  background-position: var(--col-bishop) var(--row-white);
+}
+.w-knight {
+  background-position: var(--col-knight) var(--row-white);
+}
+.w-rook {
+  background-position: var(--col-rook) var(--row-white);
+}
+.w-pawn {
+  background-position: var(--col-pawn) var(--row-white);
+}
+
+/* Piezas negras */
+.b-king {
+  background-position: var(--col-king) var(--row-black);
+}
+.b-queen {
+  background-position: var(--col-queen) var(--row-black);
+}
+.b-bishop {
+  background-position: var(--col-bishop) var(--row-black);
+}
+.b-knight {
+  background-position: var(--col-knight) var(--row-black);
+}
+.b-rook {
+  background-position: var(--col-rook) var(--row-black);
+}
+.b-pawn {
+  background-position: var(--col-pawn) var(--row-black);
+}
+
+/*Tablero*/
+.chess-board {
+  display: grid;
+  grid-template-columns: repeat(8, var(--piece-size, 50px));
+  grid-template-rows: repeat(8, var(--piece-size, 50px));
+  border: 2px solid #333;
+  margin: 40px auto;
+  width: calc(var(--piece-size, 50px) * 8);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+.square {
+  width: var(--piece-size, 50px);
+  height: var(--piece-size, 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+}
+.light {
+  background: #f0d9b5;
+}
+.dark {
+  background: #b58863;
+}
