@@ -64,7 +64,7 @@
   display: grid;
   grid-template-columns: repeat(8, var(--piece-size, 50px));
   grid-template-rows: repeat(8, var(--piece-size, 50px));
-  border: 2px solid #333;
+  /*border: 2px solid #333;*/
   margin: 40px auto;
   width: calc(var(--piece-size, 50px) * 8);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
