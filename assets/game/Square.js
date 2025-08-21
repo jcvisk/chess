@@ -1,7 +1,7 @@
 class Square {
-    constructor(fila, columna, color, piece) {
-        this.columna = columna;
-        this.fila = fila;
+    constructor(row, column, color, piece) {
+        this.column = column;
+        this.row = row;
         this.color = color;
         this.piece = piece;
     }

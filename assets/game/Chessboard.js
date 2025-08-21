@@ -20,48 +20,57 @@ function buildBoard() {
             $board[i].push(new Square(ROWS[i], COLUMNS[j], getSquareColor(i, j), null));
         }
     }
-    console.log($board);
-    renderBoard();
 }
 
 function getSquareColor(rowIndex, columnIndex) {
     if (rowIndex % 2 === 0) {
-        if (columnIndex % 2 === 0) {
-            return 'light';
-        } else {
-            return 'dark';
-        }
+        return columnIndex % 2 === 0 ? 'light' : 'dark';
     } else {
-        if (columnIndex % 2 === 0) {
-            return 'dark';
-        } else {
-            return 'light';
-        }
+        return columnIndex % 2 === 0 ? 'dark' : 'light';
     }
 }
 
 function renderBoard() {
-    for (let i = 0; i < $board.length; i++) {
-        const fila = $board[i];
-        for (let j = 0; j < fila.length; j++) {
-            const celda = fila[j];
-            const div = document.createElement("div");
-            div.classList.add("square");
-            div.setAttribute("cell", celda.columna + celda.fila);
-            div.classList.add(celda.color);
-            boardContainer.appendChild(div);
-        }
-    }
+
+    $board.forEach((fila, index) => {
+        fila.forEach(casilla => {
+            console.log(casilla);
+
+            const cell = document.createElement("div");
+            cell.classList.add("square");
+            cell.setAttribute("cell", casilla.column + casilla.row);
+            cell.classList.add(casilla.color);
+            if (casilla.piece){
+                console.log(casilla.piece.color);
+                const piece = document.createElement("span");
+                piece.classList.add("sprite");
+                piece.classList.add(`${casilla.piece.color}-${casilla.piece.type}`);
+                cell.appendChild(piece);
+            }
+            boardContainer.appendChild(cell);
+        });
+    });
 }
 
-function pieces(){
-    function setPiece(){
+function resetBoard() {
+    $board.forEach((row, index) => {
+        row.forEach(cell => {
+            if (index === 1){
+                cell.piece = new Piece('pawn', 'b', `${cell.column}${cell.row}`, STATUS.ACTIVE);
+            }
 
-    }
-
-    function movePiece(){
-
-    }
+            if (index === 6){
+                cell.piece = new Piece('pawn', 'w', `${cell.column}${cell.row}`, STATUS.ACTIVE);
+            }
+        });
+    });
 }
-buildBoard();
 
+
+function initGame() {
+    buildBoard();
+    resetBoard();
+    renderBoard();
+}
+
+initGame();
