@@ -1,17 +1,17 @@
 import Piece from "./Piece.js";
 import Square from "./Square.js";
 
-const boardContainer = document.getElementById('chess-$board');
+const boardContainer = document.getElementById('chess-board');
 
 const COLUMNS = 'ABCDEFGH'.split('');
-const ROWS = '12345678'.split('');
+const ROWS = '87654321'.split('');
 const $board = [];
 
 const STATUS = {
     ACTIVE: 'active',
 }
 
-function build$board() {
+function buildBoard() {
     for (let i = 0; i < ROWS.length; i++) {
         if (!$board[i]) {
             $board[i] = [];
@@ -21,7 +21,7 @@ function build$board() {
         }
     }
     console.log($board);
-    render$board($board);
+    renderBoard();
 }
 
 function getSquareColor(rowIndex, columnIndex) {
@@ -40,14 +40,15 @@ function getSquareColor(rowIndex, columnIndex) {
     }
 }
 
-function render$board($board) {
+function renderBoard() {
     for (let i = 0; i < $board.length; i++) {
         const fila = $board[i];
         for (let j = 0; j < fila.length; j++) {
-            const columna = fila[j];
+            const celda = fila[j];
             const div = document.createElement("div");
             div.classList.add("square");
-            div.classList.add(columna.color);
+            div.setAttribute("cell", celda.columna + celda.fila);
+            div.classList.add(celda.color);
             boardContainer.appendChild(div);
         }
     }
@@ -62,5 +63,5 @@ function pieces(){
 
     }
 }
-build$board();
+buildBoard();
 
